@@ -1,18 +1,21 @@
 let weatherData;
-const input = document.querySelector('.input');
-
+const input = document.querySelector(".input");
 
 async function getWeather() {
-  const weatherAPI = await fetch(
-    "http://api.openweathermap.org/data/2.5/weather?q=" +input.value+"&APPID=c185e2fec5adf11f06c6284c2b78befc"
-  );
-  weatherData = await weatherAPI.json();
-  console.log(weatherData);
-  display()
-  input.value = '';
-  return weatherData;
+  try {
+    const weatherAPI = await fetch(
+      "http://api.openweathermap.org/data/2.5/weather?q=" +
+        input.value +
+        "&APPID=c185e2fec5adf11f06c6284c2b78befc"
+    );
+    weatherData = await weatherAPI.json();
+    // console.log(weatherData);
+    display();
+    input.value = "";
+  } catch {
+    console.log("error");
+  }
 }
-
 
 const city = document.querySelector(".city");
 const current = document.querySelector(".current");
